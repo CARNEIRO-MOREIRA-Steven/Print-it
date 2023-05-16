@@ -21,6 +21,7 @@ const slides = [
 const arrowRight = document.querySelector(".arrow_right");
 const arrowLeft = document.querySelector(".arrow_left");
 const currentBanner = document.querySelector(".banner-img");
+const currentTexte = document.querySelector(".texte");
 const dots = document.querySelector(".dots");
 
 const currentPath = './assets/images/slideshow/';//chemin d'accès des images
@@ -28,6 +29,7 @@ let cpt = 0;// Initialiser compteur à 0
 
 const init = () => { // Fonction pour afficher la première diapositive
   currentBanner.src = currentPath + slides[cpt].image;
+  currentTexte.innerHTML = slides[cpt].tagLine;
 
 for(let i =0; i < slides.length;i++){ //Pour chaque elements
     const span = document.createElement('span'); //Crée balise span
@@ -35,8 +37,8 @@ for(let i =0; i < slides.length;i++){ //Pour chaque elements
     dots.appendChild(span); //envoie parents
     }
     activeDot()
-
 };
+
 const activeDot = () => {
     const tabDots = document.querySelectorAll(".dot"); // sélectionne tous les points
     for (let i = 0; i < tabDots.length; i++) { 
@@ -52,7 +54,9 @@ arrowRight.addEventListener('click', () => {// écouteur d'événements diaposit
   } else {
     cpt++; // passer à la diapositive suivante
   }
+
   currentBanner.src = currentPath + slides[cpt].image; // Changement image
+  currentTexte.innerHTML = slides[cpt].tagLine
   activeDot()
   console.log("flèche de droite");
 });
@@ -63,10 +67,11 @@ arrowLeft.addEventListener('click', () => {
   } else {
     cpt--; 
   }
+
   currentBanner.src = currentPath + slides[cpt].image;
+  currentTexte.innerHTML = slides[cpt].tagLine
   activeDot()
   console.log("flèche de gauche");
 });
-
 
 init();
